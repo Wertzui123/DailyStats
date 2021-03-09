@@ -1,5 +1,6 @@
 # DailyStats
 This plugin sends a summary about the join activity of the day into your discord server!
+<br>The .phar can be found on <a href="https://poggit.pmmp.io/ci/Wertzui123/DailyStats/DailyStats/">poggit</a>.
 
 # Config
 You must add the url of your webhook in the config file.
