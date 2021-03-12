@@ -20,6 +20,7 @@ class Main extends PluginBase
 
     public function onEnable()
     {
+        $this->saveDefaultConfig();
         $this->db = new Config($this->getDataFolder() . 'database.json');
         $this->registeredPlayers = $this->db->getNested(date('Y-m-d') . '.registered', 0);
         $this->joinedPlayers = $this->db->getNested(date('Y-m-d') . '.joined', []);
