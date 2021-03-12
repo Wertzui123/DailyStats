@@ -52,7 +52,7 @@ class Main extends PluginBase
      */
     public function notify()
     {
-        $text = str_replace(['{registered}', '{joined}'], $this->getConfig()->get('message'), [$this->registeredPlayers, count($this->joinedPlayers)]);
+        $text = str_replace(['{registered}', '{joined}'], [$this->registeredPlayers, count($this->joinedPlayers)], $this->getConfig()->get('message'));
         $data = array('content' => $text, 'username' => $this->getConfig()->getNested('webhook.username'));
         $curl = curl_init($this->getConfig()->getNested('webhook.url'));
         curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'POST');
