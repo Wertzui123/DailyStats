@@ -3,4 +3,5 @@ webhook:
   url: "https://discordapp.com/api/webhooks/token"
   username: "Daily Stats"
 message: "**__Stats for this day__:**\n\nNew players: {registered}\nJoined players: {joined}"
+timezone: null # null means local time (the time zone at the server location), everything else should be a TZ database name (https://www.php.net/manual/en/timezones.php)
 ...

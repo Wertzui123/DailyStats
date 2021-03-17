@@ -48,6 +48,16 @@ class Main extends PluginBase
     }
 
     /**
+     * Returns the time in the timezone given in the config
+     */
+    public function getTime()
+    {
+        if($this->getConfig()->get('timezone') == null) return new \DateTime();
+        $timezone = new \DateTimeZone($this->getConfig()->get('timezone'));
+        return new \DateTime('now', $timezone);
+    }
+
+    /**
      * Sends the summary of the day to the discord server
      */
     public function notify()
@@ -65,8 +75,8 @@ class Main extends PluginBase
 
     public function onDisable()
     {
-        $this->db->setNested(date('Y-m-d') . '.registered', $this->registeredPlayers);
-        $this->db->setNested(date('Y-m-d') . '.joined', $this->joinedPlayers);
+        $this->db->setNested($this->getTime()->format('Y-m-d') . '.registered', $this->registeredPlayers);
+        $this->db->setNested($this->getTime()->format('Y-m-d') . '.joined', $this->joinedPlayers);
         $this->db->save();
     }
 

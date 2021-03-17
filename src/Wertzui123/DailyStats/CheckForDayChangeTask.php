@@ -17,7 +17,8 @@ class CheckForDayChangeTask extends Task
 
     public function onRun(int $currentTick)
     {
-        if (time() > ($this->lastNotify + 10) && date('H') === '00' && date('i') === '00' && (date('s') < 10)) {
+        $today = $this->plugin->getTime();
+        if (time() > ($this->lastNotify + 10) && $today->format('H') === '00' && $today->format('i') === '00' && ($today->format('s') < 10)) {
             $this->lastNotify = time();
             $this->plugin->notify();
         }
