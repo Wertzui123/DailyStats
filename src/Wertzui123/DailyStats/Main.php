@@ -52,7 +52,7 @@ class Main extends PluginBase
      */
     public function getTime()
     {
-        if($this->getConfig()->get('timezone') == null) return new \DateTime();
+        if ($this->getConfig()->get('timezone') == null) return new \DateTime();
         $timezone = new \DateTimeZone($this->getConfig()->get('timezone'));
         return new \DateTime('now', $timezone);
     }
@@ -62,12 +62,17 @@ class Main extends PluginBase
      */
     public function notify()
     {
-        $text = str_replace(['{registered}', '{joined}'], [$this->registeredPlayers, count($this->joinedPlayers)], $this->getConfig()->get('message'));
-        $data = array('content' => $text, 'username' => $this->getConfig()->getNested('webhook.username'));
+        if ($this->getConfig()->getNested('embed.enabled') === true) {
+            $data = ['username' => $this->getConfig()->getNested('webhook.username'), 'embeds' => [['title' => $this->getConfig()->getNested('embed.title'), 'color' => $this->getConfig()->getNested('embed.color'), 'fields' => [['name' => $this->getConfig()->getNested('embed.registered'), 'value' => (string)$this->registeredPlayers], ['name' => $this->getConfig()->getNested('embed.joined'), 'value' => (string)count($this->joinedPlayers)]]]]];
+        } else {
+            $text = str_replace(['{registered}', '{joined}'], [$this->registeredPlayers, count($this->joinedPlayers)], $this->getConfig()->get('message'));
+            $data = ['username' => $this->getConfig()->getNested('webhook.username'), 'content' => $text];
+        }
         $curl = curl_init($this->getConfig()->getNested('webhook.url'));
         curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'POST');
-        curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
         curl_exec($curl);
         $this->registeredPlayers = 0;
         $this->joinedPlayers = [];

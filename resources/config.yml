@@ -2,6 +2,12 @@
 webhook:
   url: "https://discordapp.com/api/webhooks/token"
   username: "Daily Stats"
-message: "**__Stats for this day__:**\n\nNew players: {registered}\nJoined players: {joined}"
+message: "**__Stats for this day__:**\n\nNew players: {registered}\nJoined players: {joined}" # this will be ignored when embeds are enabled
+embed:
+  enabled: true # true to use embeds instead of normal messages
+  title: "__Stats for this day__"
+  registered: "New players"
+  joined: "Joined players"
+  color: 3447003 # the color of the embed in decimal; the default is a light blue
 timezone: null # null means local time (the time zone at the server location), everything else should be a TZ database name (https://www.php.net/manual/en/timezones.php)
 ...
