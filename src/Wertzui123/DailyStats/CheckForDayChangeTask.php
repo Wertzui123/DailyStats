@@ -7,14 +7,23 @@ use pocketmine\scheduler\Task;
 class CheckForDayChangeTask extends Task
 {
 
+    /** @var Main */
     private $plugin;
+    /** @var int */
     private $lastNotify = 0;
 
+    /**
+     * CheckForDayChangeTask constructor.
+     * @param Main $plugin
+     */
     public function __construct(Main $plugin)
     {
         $this->plugin = $plugin;
     }
 
+    /**
+     * @param int $currentTick
+     */
     public function onRun(int $currentTick)
     {
         $today = $this->plugin->getTime();
