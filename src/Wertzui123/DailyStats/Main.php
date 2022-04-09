@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Wertzui123\DailyStats;
 
-use pocketmine\Player;
+use pocketmine\player\Player;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\Config;
 
@@ -18,7 +18,7 @@ class Main extends PluginBase
     /** @var string[] */
     private $joinedPlayers;
 
-    public function onEnable()
+    public function onEnable(): void
     {
         $this->saveDefaultConfig();
         $this->db = new Config($this->getDataFolder() . 'database.json');
@@ -78,7 +78,7 @@ class Main extends PluginBase
         $this->joinedPlayers = [];
     }
 
-    public function onDisable()
+    public function onDisable(): void
     {
         $this->db->setNested($this->getTime()->format('Y-m-d') . '.registered', $this->registeredPlayers);
         $this->db->setNested($this->getTime()->format('Y-m-d') . '.joined', $this->joinedPlayers);
