@@ -1,5 +1,5 @@
 # DailyStats
-This plugin sends a summary about the join activity of the day into your discord server!
+This plugin sends a summary of the join activity of the day into your discord server!
 <br>The .phar can be found on <a href="https://poggit.pmmp.io/p/DailyStats">poggit</a>.
 
 # Config
