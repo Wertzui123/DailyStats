@@ -1,6 +1,6 @@
 ---
 webhook:
-  url: "https://discordapp.com/api/webhooks/token"
+  url: "https://discord.com/api/webhooks/token"
   username: "Daily Stats"
 message: "**__Stats for this day__:**\n\nNew players: {registered}\nJoined players: {joined}" # this will be ignored when embeds are enabled
 embed:
