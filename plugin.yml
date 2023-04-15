@@ -1,7 +1,7 @@
 name: DailyStats
 main: Wertzui123\DailyStats\Main
-version: 2.3
-api: 4.0.0
+version: 2.4
+api: 5.0.0
 load: POSTWORLD
 author: Wertzui123
 description: Sends a summary about the day into a discord server
